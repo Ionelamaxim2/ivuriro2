@@ -83,7 +83,7 @@ const testimonials = [
   },
 ];
 
-// Hook pentru mobil/desktop
+// Hook pentru detectare mobil / desktop
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
   useEffect(() => {
@@ -92,6 +92,80 @@ function useIsMobile(breakpoint = 768) {
     return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);
   return isMobile;
+}
+
+// Carusel simplu cu săgeți pentru mobil (galerie statică)
+function StaticMobileGallery() {
+  const slides = [
+    {
+      image: "/images/abdomen1.png",
+      text: "Abdomen shape restoration",
+    },
+    {
+      image: "/images/buze1.png",
+      text: "Visible volume and hydration after injection",
+    },
+    {
+      image: "/images/bbl1.png",
+      text: "Brazilian Butt Lift",
+    },
+    {
+      image: "/images/fund1.png",
+      text: "Non-surgical lifting and volumization",
+    },
+    {
+      image: "/images/sani1.png",
+      text: "Improved shape, volume, and symmetry",
+    },
+    {
+      image: "/images/jawline1.png",
+      text: "Defined jawline contour",
+    },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  function prevSlide() {
+    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  }
+
+  function nextSlide() {
+    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  }
+
+  return (
+    <div className="relative w-full max-w-sm mx-auto bg-white rounded-xl shadow-lg p-4 flex flex-col items-center">
+      {/* Titlu cu margin bottom pentru spațiu */}
+      <p className="text-center font-semibold text-lg mb-4">
+        {slides[currentIndex].text}
+      </p>
+
+      {/* Imaginea */}
+      <img
+        src={slides[currentIndex].image}
+        alt={slides[currentIndex].text}
+        className="rounded-lg object-cover max-h-64"
+      />
+
+      {/* Butoanele săgeți */}
+      <div className="flex justify-between w-full max-w-xs mt-4">
+        <button
+          onClick={prevSlide}
+          aria-label="Previous slide"
+          className="p-2 rounded-full bg-[#b3864a] text-white hover:bg-[#a77c3b] transition"
+        >
+          &#8592;
+        </button>
+        <button
+          onClick={nextSlide}
+          aria-label="Next slide"
+          className="p-2 rounded-full bg-[#b3864a] text-white hover:bg-[#a77c3b] transition"
+        >
+          &#8594;
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default function Home() {
@@ -174,7 +248,7 @@ export default function Home() {
             position: "absolute",
             inset: 0,
             width: "120%",
-            height: "100%",
+            height: isMobile ? "140%" : "100%",
             zIndex: 1,
             pointerEvents: "auto",
           }}
@@ -271,21 +345,31 @@ export default function Home() {
             <h2 className="treatments-title ">
               Satisfied Patients, Real Experiences and Opinions
             </h2>
-            <p className="treatments-subtitle ">
+            <p
+              className="treatments-subtitle "
+              style={{ marginBottom: "24px" }}
+            >
               Transparent. Honest. Real. Discover What Our Patients Say.
             </p>
           </div>
         </div>
-        <div style={{ height: "600px", position: "relative" }}>
-          <CircularGallery
-            bend={1}
-            textColor="black"
-            borderRadius={0.15}
-            scrollEase={0.02}
-          />
+        <div style={{ height: "450px", position: "relative" }}>
+          {isMobile ? (
+            <StaticMobileGallery />
+          ) : (
+            <CircularGallery
+              bend={1}
+              textColor="black"
+              borderRadius={0.15}
+              scrollEase={0.02}
+            />
+          )}
         </div>
-        <div className="flex justify-center mt--9 mb-14">
-          <button className="butonprimapaginajos2">
+        <div className="flex justify-center -mt-13 mb-14">
+          <button
+            onClick={() => (window.location.href = "/contact")}
+            className="butonprimapaginajos2"
+          >
             <span>Book now</span>
           </button>
         </div>

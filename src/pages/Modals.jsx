@@ -99,7 +99,7 @@ export default function Modals({ show, onClose, type }) {
 
                 <h2>7. Changes to This Privacy Policy</h2>
                 <p>
-                  DrDali.ro clinic may update this privacy policy periodically.
+                  Ivuriro clinic may update this privacy policy periodically.
                   Any changes will be posted on this page and, if applicable,
                   notified to you via email. We recommend that you check this
                   page regularly to stay informed of any changes.
@@ -116,7 +116,7 @@ export default function Modals({ show, onClose, type }) {
                 <h1>Terms and Conditions</h1>
 
                 <p>
-                  Welcome to DrDali.ro. By accessing and using this website, you
+                  Welcome to Ivuriro By accessing and using this website, you
                   agree to the terms and conditions outlined below. Please read
                   this information carefully before using our site.
                 </p>
@@ -130,7 +130,7 @@ export default function Modals({ show, onClose, type }) {
 
                 <h2>2. Changes to Terms</h2>
                 <p>
-                  DrDali.ro reserves the right to modify these terms and
+                  Ivuriro reserves the right to modify these terms and
                   conditions at any time without prior notice. We recommend that
                   you check this page periodically to stay informed of any
                   updates. Continued use of our site after changes are posted
@@ -139,7 +139,7 @@ export default function Modals({ show, onClose, type }) {
 
                 <h2>3. Description of Services</h2>
                 <p>
-                  DrDali.ro provides medical information and services for
+                  Ivuriro provides medical information and services for
                   patients. The content on this site is for general
                   informational purposes only and does not constitute
                   professional medical advice. For diagnosis and specific
@@ -171,7 +171,7 @@ export default function Modals({ show, onClose, type }) {
 
                 <h2>6. Limitation of Liability</h2>
                 <p>
-                  DrDali.ro shall not be liable for any direct, indirect,
+                  Ivuriro shall not be liable for any direct, indirect,
                   incidental, special, or consequential damages arising from the
                   use or inability to use our website or any content provided
                   herein. This includes, but is not limited to, damages for loss

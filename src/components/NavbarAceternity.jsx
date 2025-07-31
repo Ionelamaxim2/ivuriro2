@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const pages = [
   { label: "Home", href: "/" },
@@ -23,14 +23,10 @@ export default function CenterMenuNavbar() {
   const [active, setActive] = useState(null);
 
   return (
-    <header
-      className="w-full flex flex-col items-center sticky top-0 z-50"
-      style={{ background: "transparent" }}
-    >
+    <header className="w-full flex flex-col items-center sticky top-0 z-50 bg-transparent">
       <nav
         onMouseLeave={() => setActive(null)}
-        // DOAR NAV-ul are bulina albă și shadow!
-        className="relative rounded-full bg-white shadow-input flex justify-center space-x-8 px-10 py-4 mt-6"
+        className="relative rounded-full bg-white shadow-input flex justify-center space-x-4 md:space-x-8 px-4 md:px-10 py-3 md:py-4 mt-6 max-w-md md:max-w-4xl w-full mx-auto"
       >
         {pages.map((page) => (
           <div
