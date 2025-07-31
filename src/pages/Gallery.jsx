@@ -126,7 +126,7 @@ const Gallery = () => {
           <Dither
             waveColor={[1, 0.9, 0.8]}
             disableAnimation={false}
-            enableMouseInteraction={false}
+            enableMouseInteraction={true}
             mouseRadius={0.3}
             colorNum={4}
             waveAmplitude={0.3}

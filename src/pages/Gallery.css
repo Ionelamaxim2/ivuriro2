@@ -60,6 +60,10 @@
   flex-wrap: wrap;
   gap: 28px;
   justify-content: center;
+  max-width: 900px; /* setează o lățime fixă sau maximă */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2vw;
 }
 
 .result-card-gallery3 {
@@ -358,11 +362,12 @@
 /* Desktop: grid 3 sau 4, cum ai tu */
 .results-grid-gallery3 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Sau 4, dacă vrei */
+  grid-template-columns: repeat(3, 1fr);
   gap: 26px 22px;
-  justify-content: center;
-  margin: 0 auto 70px auto;
-  padding: 0 2vw;
+  max-width: 1100px; /* limitează lățimea totală */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
 }
 
 /* Pentru mobil: 2 pe rând */
