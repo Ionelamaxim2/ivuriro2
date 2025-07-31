@@ -1,14 +1,34 @@
 const express = require("express");
 const path = require("path");
+const helmet = require("helmet");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from the React app
+app.use(helmet());
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:"],
+      fontSrc: ["'self'", "data:"],
+      objectSrc: ["'none'"],
+      frameAncestors: ["'none'"],
+    },
+  })
+);
+
+app.use((req, res, next) => {
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "geolocation=(), microphone=()");
+  next();
+});
+
 app.use(express.static(path.join(__dirname, "build")));
 
-// The "catchall" handler: for any request that doesn't
-// match a static file, send back React's index.html file.
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
