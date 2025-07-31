@@ -1,49 +1,51 @@
-import React, { useState } from "react";
-import Dither from "../components/Dither";
-import "./Gallery.css";
+import React, { useState, lazy, Suspense, useEffect } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 import FooterIvuriro from "../components/FooterIvuriro";
+import "./Gallery.css";
+
+const Dither = lazy(() => import("../components/Dither"));
 
 const resultsData = [
   {
     category: "facial",
     title: "Lip Filler",
     desc: "Visible volume and hydration",
-    img: "/images/buze1.png",
+    img: "/images/buze1.avif",
     alt: "acid hialuronic in buze",
   },
   {
     category: "body",
     title: "Butt Filler",
     desc: "Non-surgical volumization",
-    img: "/images/fund1.png",
+    img: "/images/fund1.avif",
     alt: "acid in fese",
   },
   {
     category: "facial",
     title: "Jawline Filler",
     desc: "Sharpened facial contour",
-    img: "/images/jawline1.png",
+    img: "/images/jawline1.avif",
     alt: "acid in jawline",
   },
   {
     category: "enhancement",
     title: "Breast Implant",
     desc: "Enhanced shape and symmetry",
-    img: "/images/sani1.png",
+    img: "/images/sani1.avif",
     alt: "implant mamar",
   },
   {
     category: "enhancement",
     title: "Brazilian Butt Lift",
     desc: "Surgical contouring and lift",
-    img: "/images/bbl1.png",
+    img: "/images/bbl1.avif",
     alt: "bbl",
   },
   {
     category: "enhancement",
     title: "Abdominoplasty",
     desc: "Improved abdomen silhouette",
-    img: "/images/abdomen1.png",
+    img: "/images/abdomen1.avif",
     alt: "Abdominoplastie",
   },
 ];
@@ -90,6 +92,35 @@ const filterCategories = [
   { label: "Surgical Enhancements", value: "enhancement" },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+const fadeLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+const fadeRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
+function useScrollAnimation(threshold = 0.2) {
+  const ref = React.useRef(null);
+  const controls = useAnimation();
+  const inView = useInView(ref, {
+    once: true,
+    margin: "0px",
+    amount: threshold,
+  });
+
+  React.useEffect(() => {
+    if (inView) controls.start("visible");
+  }, [inView, controls]);
+
+  return [ref, controls];
+}
+
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -98,6 +129,15 @@ const Gallery = () => {
     activeFilter === "all"
       ? resultsData
       : resultsData.filter((item) => item.category === activeFilter);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const [headerRef, headerAnim] = useScrollAnimation();
+  const [filterRef, filterAnim] = useScrollAnimation();
+  const [resultsRef, resultsAnim] = useScrollAnimation();
+  const [faqRef, faqAnim] = useScrollAnimation();
 
   return (
     <main>
@@ -110,28 +150,34 @@ const Gallery = () => {
           overflow: "hidden",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "120%",
-            height: "100%",
-            zIndex: 1,
-            pointerEvents: "none",
-          }}
-        >
-          <Dither
-            waveColor={[1, 0.9, 0.8]}
-            disableAnimation={false}
-            enableMouseInteraction={true}
-            mouseRadius={0.3}
-            colorNum={4}
-            waveAmplitude={0.3}
-            waveFrequency={3}
-            waveSpeed={0.05}
-          />
-        </div>
-        <div
+        <Suspense fallback={<div style={{ height: 260 }} />}>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "120%",
+              height: "100%",
+              zIndex: 1,
+              pointerEvents: "none",
+            }}
+          >
+            <Dither
+              waveColor={[1, 0.9, 0.8]}
+              disableAnimation={false}
+              enableMouseInteraction={false}
+              mouseRadius={0.3}
+              colorNum={4}
+              waveAmplitude={0.3}
+              waveFrequency={3}
+              waveSpeed={0.05}
+            />
+          </div>
+        </Suspense>
+        <motion.div
+          ref={headerRef}
+          variants={fadeUp}
+          initial="hidden"
+          animate={headerAnim}
           style={{
             position: "relative",
             zIndex: 2,
@@ -158,6 +204,7 @@ const Gallery = () => {
               fontSize: "1.15rem",
               marginBottom: 48,
               color: "white",
+              fontWeight: 700,
               textShadow: "0 2px 16px #0007",
             }}
             className="subtitle2"
@@ -165,10 +212,14 @@ const Gallery = () => {
             Browse our gallery to see real before-and-after photos from our
             satisfied clients.
           </p>
-        </div>
+        </motion.div>
       </div>
 
-      <div
+      <motion.div
+        ref={filterRef}
+        variants={fadeLeft}
+        initial="hidden"
+        animate={filterAnim}
         className="filter-buttons-gallery3"
         style={{ textAlign: "center", margin: "40px 0 24px 0" }}
       >
@@ -183,13 +234,19 @@ const Gallery = () => {
             {cat.label}
           </button>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="results-grid-gallery3">
+      <motion.div
+        ref={resultsRef}
+        variants={fadeUp}
+        initial="hidden"
+        animate={resultsAnim}
+        className="results-grid-gallery3"
+      >
         {filteredResults.map((item, idx) => (
           <div className={`result-card-gallery3 ${item.category}`} key={idx}>
             <div className="result-single-gallery3">
-              <img src={item.img} alt={item.alt} />
+              <img src={item.img} alt={item.alt} loading="lazy" />
               <span className="label before">Before</span>
               <span className="label after">After</span>
             </div>
@@ -211,9 +268,15 @@ const Gallery = () => {
             No results found for this category.
           </div>
         )}
-      </div>
+      </motion.div>
 
-      <section className="faq4">
+      <motion.section
+        ref={faqRef}
+        variants={fadeRight}
+        initial="hidden"
+        animate={faqAnim}
+        className="faq4"
+      >
         <h2>
           Frequently <span className="orange">Asked Questions</span>
         </h2>
@@ -280,7 +343,7 @@ const Gallery = () => {
             </a>
           </div>
         </div>
-      </section>
+      </motion.section>
       <FooterIvuriro />
     </main>
   );

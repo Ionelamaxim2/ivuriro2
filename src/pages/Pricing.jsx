@@ -1,8 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Pricing.css";
-import Dither from "../components/Dither";
+import React, { lazy, Suspense, useEffect } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 import FooterIvuriro from "../components/FooterIvuriro";
+import "./Pricing.css";
+
+const Dither = lazy(() => import("../components/Dither"));
 
 const prices = [
   {
@@ -99,7 +100,36 @@ const prices = [
   },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
+function useScrollAnimation(threshold = 0.18) {
+  const ref = React.useRef(null);
+  const controls = useAnimation();
+  const inView = useInView(ref, {
+    once: true,
+    margin: "0px",
+    amount: threshold,
+  });
+
+  React.useEffect(() => {
+    if (inView) controls.start("visible");
+  }, [inView, controls]);
+
+  return [ref, controls];
+}
+
 const Pricing = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const [headerRef, headerAnim] = useScrollAnimation();
+  const [pricingRef, pricingAnim] = useScrollAnimation();
+  const [consultRef, consultAnim] = useScrollAnimation();
+
   return (
     <main>
       <div
@@ -111,29 +141,35 @@ const Pricing = () => {
           overflow: "hidden",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "120%",
-            height: "100%",
-            zIndex: 1,
-            pointerEvents: "none",
-          }}
-        >
-          <Dither
-            waveColor={[1, 0.9, 0.8]}
-            disableAnimation={false}
-            enableMouseInteraction={false}
-            mouseRadius={0.3}
-            colorNum={4}
-            waveAmplitude={0.3}
-            waveFrequency={3}
-            waveSpeed={0.05}
-          />
-        </div>
+        <Suspense fallback={<div style={{ height: 260 }} />}>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "120%",
+              height: "100%",
+              zIndex: 1,
+              pointerEvents: "none",
+            }}
+          >
+            <Dither
+              waveColor={[1, 0.9, 0.8]}
+              disableAnimation={false}
+              enableMouseInteraction={false}
+              mouseRadius={0.3}
+              colorNum={4}
+              waveAmplitude={0.3}
+              waveFrequency={3}
+              waveSpeed={0.05}
+            />
+          </div>
+        </Suspense>
 
-        <div
+        <motion.div
+          ref={headerRef}
+          variants={fadeUp}
+          initial="hidden"
+          animate={headerAnim}
           style={{
             position: "relative",
             zIndex: 2,
@@ -162,16 +198,23 @@ const Pricing = () => {
               marginBottom: 48,
               color: "white",
               textShadow: "0 2px 16px #0007",
+              fontWeight: 700,
             }}
             className="subtitle2"
           >
             All prices are starting rates and may vary depending on personalized
             plans.
           </p>
-        </div>
+        </motion.div>
       </div>
 
-      <section className="pricing-clean2">
+      <motion.section
+        ref={pricingRef}
+        variants={fadeUp}
+        initial="hidden"
+        animate={pricingAnim}
+        className="pricing-clean2"
+      >
         {prices.map((category, i) => (
           <div className="pricing-list-block2" key={i}>
             <h2 className="section-title2">{category.category}</h2>
@@ -189,16 +232,22 @@ const Pricing = () => {
             </div>
           </div>
         ))}
-      </section>
+      </motion.section>
 
-      <section className="free-consult4-section">
+      <motion.section
+        ref={consultRef}
+        variants={fadeUp}
+        initial="hidden"
+        animate={consultAnim}
+        className="free-consult4-section"
+      >
         <div className="free-consult4-box">
           <h2 className="free-consult4-title">Not sure what to choose?</h2>
           <p className="free-consult4-subtitle">
             Schedule a free consultation and receive a personalized plan with
             exact prices tailored to your needs.
           </p>
-          <div className="flex justify-center  mt-9 mb-1">
+          <div className="flex justify-center mt-9 mb-1">
             <button
               className="butonprimapaginajos2"
               onClick={() => (window.location.href = "/contact")}
@@ -207,7 +256,7 @@ const Pricing = () => {
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
       <FooterIvuriro />
     </main>
   );

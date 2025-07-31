@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import Dither from "../components/Dither";
-import "./Contact.css";
+import React, { useState, lazy, Suspense, useEffect } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 import FooterIvuriro from "../components/FooterIvuriro";
+import "./Contact.css";
+
+const Dither = lazy(() => import("../components/Dither"));
 
 const initialState = {
   name: "",
@@ -23,11 +25,50 @@ function countWords(str) {
   return str.trim().split(/\s+/).filter(Boolean).length;
 }
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+const fadeRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+const fadeLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
+function useScrollAnimation(threshold = 0.2) {
+  const ref = React.useRef(null);
+  const controls = useAnimation();
+  const inView = useInView(ref, {
+    once: true,
+    margin: "0px",
+    amount: threshold,
+  });
+
+  useEffect(() => {
+    if (inView) controls.start("visible");
+  }, [inView, controls]);
+
+  return [ref, controls];
+}
+
 const Contact = () => {
   const [form, setForm] = useState(initialState);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const [headerRef, headerAnim] = useScrollAnimation();
+  const [formRef, formAnim] = useScrollAnimation();
+  const [infoRef, infoAnim] = useScrollAnimation();
+  const [mapRef, mapAnim] = useScrollAnimation();
+  const [callRef, callAnim] = useScrollAnimation();
 
   const validateForm = () => {
     if (countWords(form.name) > 5) return "Name too long (max 5 words)";
@@ -79,28 +120,34 @@ const Contact = () => {
           overflow: "hidden",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "120%",
-            height: "100%",
-            zIndex: 1,
-            pointerEvents: "none",
-          }}
-        >
-          <Dither
-            waveColor={[1, 0.9, 0.8]}
-            disableAnimation={false}
-            enableMouseInteraction={true}
-            mouseRadius={0.3}
-            colorNum={4}
-            waveAmplitude={0.3}
-            waveFrequency={3}
-            waveSpeed={0.05}
-          />
-        </div>
-        <section
+        <Suspense fallback={<div style={{ height: 260 }} />}>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "120%",
+              height: "100%",
+              zIndex: 1,
+              pointerEvents: "none",
+            }}
+          >
+            <Dither
+              waveColor={[1, 0.9, 0.8]}
+              disableAnimation={false}
+              enableMouseInteraction={false}
+              mouseRadius={0.3}
+              colorNum={4}
+              waveAmplitude={0.3}
+              waveFrequency={3}
+              waveSpeed={0.05}
+            />
+          </div>
+        </Suspense>
+        <motion.section
+          ref={headerRef}
+          variants={fadeUp}
+          initial="hidden"
+          animate={headerAnim}
           style={{
             position: "relative",
             zIndex: 2,
@@ -127,17 +174,24 @@ const Contact = () => {
               fontSize: "1.15rem",
               marginBottom: 48,
               color: "white",
+              fontWeight: 700,
               textShadow: "0 2px 16px #0007",
             }}
             className="subtitle2"
           >
             We’re here to assist you with any inquiries or appointments
           </p>
-        </section>
+        </motion.section>
       </div>
 
       <section className="contact-container">
-        <div className="contact-grid">
+        <motion.div
+          ref={infoRef}
+          variants={fadeLeft}
+          initial="hidden"
+          animate={infoAnim}
+          className="contact-grid"
+        >
           <div className="contact-info">
             <div className="contact-info-box">
               <i className="fa-solid fa-location-dot"></i>
@@ -179,7 +233,11 @@ const Contact = () => {
             </div>
           </div>
 
-          <form
+          <motion.form
+            ref={formRef}
+            variants={fadeRight}
+            initial="hidden"
+            animate={formAnim}
             className="contact-form"
             id="contactForm"
             onSubmit={handleSubmit}
@@ -313,10 +371,16 @@ const Contact = () => {
                 </div>
               )}
             </div>
-          </form>
-        </div>
+          </motion.form>
+        </motion.div>
 
-        <div className="map-container">
+        <motion.div
+          ref={mapRef}
+          variants={fadeUp}
+          initial="hidden"
+          animate={mapAnim}
+          className="map-container"
+        >
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2849.3258!2d26.0963!3d44.4268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff5fcbf398e3%3A0x8c607ae531a364a7!2sBulevardul%20Unirii%2C%20Bucure%C8%99ti!5e0!3m2!1sen!2sro!4v1625316510000!5m2!1sen!2sro"
             width="100%"
@@ -327,15 +391,21 @@ const Contact = () => {
             referrerPolicy="no-referrer-when-downgrade"
             title="IVURIRO Location"
           ></iframe>
-        </div>
+        </motion.div>
 
-        <div className="call-box">
+        <motion.div
+          ref={callRef}
+          variants={fadeUp}
+          initial="hidden"
+          animate={callAnim}
+          className="call-box"
+        >
           <p>
             <strong>Prefer to call us?</strong> Call us directly for quick
             appointments:
           </p>
           <strong>+40 723 456 789</strong>
-        </div>
+        </motion.div>
       </section>
       <FooterIvuriro />
     </main>

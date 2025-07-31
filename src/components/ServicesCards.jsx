@@ -6,21 +6,21 @@ const cards = [
     title: "Facial contouring",
     subtitle:
       "Rejuvenate your skin with our advanced facial treatments including Botox, dermal fillers, and skin boosters.",
-    bg: "/images/botox.jpg",
+    bg: "/images/botox.avif",
     link: "/pricing",
   },
   {
     title: "Body contouring",
     subtitle:
       "Rejuvenate your skin with our advanced body contouring treatments including liposuction, tummy tucks, and non-invasive fat reduction.",
-    bg: "/images/rino.jpg",
+    bg: "/images/rino.avif",
     link: "/pricing",
   },
   {
     title: "Personalised care",
     subtitle:
       "Rejuvenate your skin with our advanced personalised care treatments including skin analysis, tailored skincare plans, and ongoing support.",
-    bg: "/images/skincream.jpg",
+    bg: "/images/skincream.avif",
     link: "/pricing",
   },
 ];

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarAceternity from "./components/NavbarAceternity";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Pricing from "./pages/Pricing";
 import Gallery from "./pages/Gallery";

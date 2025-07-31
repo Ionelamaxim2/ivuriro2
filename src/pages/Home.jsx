@@ -7,15 +7,17 @@ import FooterIvuriro from "../components/FooterIvuriro";
 import Dither from "../components/Dither";
 import TestimonialsCarousel from "../components/TestimonialsCarousel";
 import "./Home.css";
+import { motion } from "framer-motion";
+import HeroTitleAnimated from "../components/HeroTitleAnimated";
 
 const testimonials = [
   {
-    imageSrc: "/images/client1.jpg",
+    imageSrc: "/images/client1.avif",
     altText: "Sarah Johnson",
     overlayContent: (
       <div className="flex flex-col items-center bg-white/90 rounded-xl shadow-xl p-6 w-[260px] h-[300px]">
         <img
-          src="/images/client1.jpg"
+          src="/images/client1.avif"
           alt="Sarah Johnson"
           className="w-16 h-16 rounded-full mb-2 object-cover shadow"
         />
@@ -34,12 +36,12 @@ const testimonials = [
     ),
   },
   {
-    imageSrc: "/images/client2.jpg",
+    imageSrc: "/images/client2.avif",
     altText: "Emma Rodriguez",
     overlayContent: (
       <div className="flex flex-col items-center bg-white/90 rounded-xl shadow-xl p-6 w-[260px] h-[300px]">
         <img
-          src="/images/client2.jpg"
+          src="/images/client2.avif"
           alt="Emma Rodriguez"
           className="w-16 h-16 rounded-full mb-2 object-cover shadow"
         />
@@ -58,12 +60,12 @@ const testimonials = [
     ),
   },
   {
-    imageSrc: "/images/client3.jpg",
+    imageSrc: "/images/client3.avif",
     altText: "Lisa Chen",
     overlayContent: (
       <div className="flex flex-col items-center bg-white/90 rounded-xl shadow-xl p-6 w-[260px] h-[300px]">
         <img
-          src="/images/client3.jpg"
+          src="/images/client3.avif"
           alt="Lisa Chen"
           className="w-16 h-16 rounded-full mb-2 object-cover shadow"
         />
@@ -96,27 +98,27 @@ function useIsMobile(breakpoint = 768) {
 function StaticMobileGallery() {
   const slides = [
     {
-      image: "/images/abdomen1.png",
+      image: "/images/abdomen1.avif",
       text: "Abdomen shape restoration",
     },
     {
-      image: "/images/buze1.png",
+      image: "/images/buze1.avif",
       text: "Visible volume and hydration after injection",
     },
     {
-      image: "/images/bbl1.png",
+      image: "/images/bbl1.avif",
       text: "Brazilian Butt Lift",
     },
     {
-      image: "/images/fund1.png",
+      image: "/images/fund1.avif",
       text: "Non-surgical lifting and volumization",
     },
     {
-      image: "/images/sani1.png",
+      image: "/images/sani1.avif",
       text: "Improved shape, volume, and symmetry",
     },
     {
-      image: "/images/jawline1.png",
+      image: "/images/jawline1.avif",
       text: "Defined jawline contour",
     },
   ];
@@ -188,14 +190,10 @@ export default function Home() {
         </div>
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full pointer-events-auto">
           <div className="brand hero-brand">IVURIRO</div>
-          <h1 className="hero-title">REFINING YOUR NATURAL BEAUTY</h1>
+          <HeroTitleAnimated />
           <p className="subtitle hero-desc">
             Redefining facial and body contouring with a seamless blend of
             advanced technology and aesthetic artistry.
-            <br />
-            Whether you’re looking for a revitalizing treatment, non-invasive
-            anti-aging solution, or subtle enhancement, our team transforms
-            every visit into a journey toward authentic beauty and well-being.
           </p>
           <button
             onClick={() => (window.location.href = "/contact")}
@@ -247,7 +245,7 @@ export default function Home() {
           <Dither
             waveColor={[1, 0.9, 0.8]}
             disableAnimation={false}
-            enableMouseInteraction={true}
+            enableMouseInteraction={false}
             mouseRadius={0.3}
             colorNum={4}
             waveAmplitude={0.3}
@@ -283,6 +281,7 @@ export default function Home() {
               marginBottom: 48,
               color: "white",
               textShadow: "0 2px 16px #0007",
+              fontWeight: 700,
             }}
           >
             Real stories from real people who have experienced the IVURIRO

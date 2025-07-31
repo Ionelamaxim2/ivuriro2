@@ -6,7 +6,7 @@ import FooterIvuriro from "../components/FooterIvuriro";
 const teamMembers = [
   {
     name: "Dr. Ana Dhali",
-    img: "/images/profil.jpg",
+    img: "/images/profil.avif",
     role: "Aesthetic Medicine Specialist",
     descShort: "Passionate about natural beauty and patient care.",
     bio: `Dr. Ana Dhali brings over 10 years of experience in aesthetic medicine. She specializes in non-surgical facial rejuvenation and believes in enhancing natural beauty through precision and artistry. Her gentle approach and attention to detail have earned her the trust of countless patients.`,
@@ -19,7 +19,7 @@ const teamMembers = [
   },
   {
     name: "Cristina Ionescu",
-    img: "/images/doctor2.jpg",
+    img: "/images/doctor2.avif",
     role: "Senior Nurse & Injector",
     descShort: "Precision and empathy in every treatment.",
     bio: `Cristina is a highly skilled nurse with specialized training in aesthetic injections. Her meticulous attention to detail and compassionate bedside manner make every patient feel comfortable and confident. She has performed thousands of successful treatments with exceptional precision.`,
@@ -93,6 +93,7 @@ const Team = () => {
               fontSize: "1.15rem",
               marginBottom: 48,
               color: "white",
+              fontWeight: 700,
               textShadow: "0 2px 16px #0007",
             }}
             className="subtitle2"
