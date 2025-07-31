@@ -1,0 +1,221 @@
+.cardsContainer {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  margin: 40px 0;
+  flex-wrap: wrap;
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+}
+
+.card {
+  position: relative;
+  width: 340px;
+  height: 430px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 6px 36px 0 rgba(140, 110, 55, 0.12);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.2s cubic-bezier(0.23, 0.52, 0.48, 0.93);
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.4); /* Schimbă aici opacitatea */
+  backdrop-filter: blur(2.5px);
+  z-index: 1;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  padding: 30px 30px 28px 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 250px;
+  justify-content: flex-end;
+}
+
+.cardTitle {
+  font-family: "Playfair Display", serif;
+  font-size: 1.65rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 0.4em;
+  text-align: left;
+}
+
+.cardSubtitle {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.05rem;
+  color: #000000;
+  margin-bottom: 1.5em;
+  text-align: left;
+  font-weight: 200;
+  line-height: 1.5;
+}
+
+.discoverLink {
+  text-decoration: none;
+  color: unset;
+}
+
+/* ---- Butonul "learn-more" (lasă exact cum e, dacă vrei animat, altfel fă-l simplu) ---- */
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .cardsContainer {
+    flex-direction: column;
+    gap: 2.2rem;
+    align-items: center;
+  }
+  .card {
+    width: 94vw;
+    max-width: 350px;
+    min-width: 220px;
+  }
+}
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #282936;
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .cardsContainer {
+    display: none;
+  }
+  .carouselWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100vw;
+    max-width: 100vw;
+  }
+  .card {
+    min-width: 50vw;
+    max-width: 60vw;
+    margin: 0 auto;
+    text-align: left;
+    box-shadow: 0 4px 18px #b08a4b23;
+    border-radius: 22px;
+    /* Mai mic pe vertical */
+    min-height: 310px;
+    max-height: 340px;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+  }
+  .arrowBtn {
+    border: none;
+    margin: 0 23px;
+    background: #b08a4b;
+    color: #fff;
+    font-size: 2.4rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.16s;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  .arrowBtn:active {
+    background: #957234;
+  }
+}

@@ -1,0 +1,102 @@
+.modalOverlay6 {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(36, 24, 12, 0.26);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.24s;
+}
+
+.modalBox6 {
+  background: #fffdf7;
+  border-radius: 24px;
+  box-shadow: 0 12px 60px #bfa06326;
+  padding: 38px 30px 24px 30px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+  font-family: "Open Sans", Arial, sans-serif;
+  color: #2b1d0d;
+  animation: popin6 0.3s;
+}
+@keyframes popin6 {
+  from {
+    transform: scale(0.96);
+    opacity: 0.2;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modalBox6 h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #b3864a;
+  font-family: "Playfair Display", serif;
+}
+.modalBox6 h2 {
+  font-size: 1.12rem;
+  margin-top: 18px;
+  color: #85663b;
+  font-family: "Playfair Display", serif;
+}
+.modalBox6 p,
+.modalBox6 li {
+  font-size: 1.03rem;
+  margin-bottom: 8px;
+}
+.modalBox6 ul {
+  padding-left: 22px;
+  margin-bottom: 14px;
+}
+.closeModalBtn6 {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 2.1rem;
+  color: #b3864a;
+  cursor: pointer;
+  z-index: 2;
+  font-weight: bold;
+}
+@media (max-width: 600px) {
+  .modalBox6 {
+    width: 60vw;
+    min-width: 0;
+    max-width: 59vw;
+    padding: 18px 10px 20px 15px;
+    border-radius: 18px;
+    font-size: 0.96rem;
+    max-height: 50vh;
+  }
+
+  .modalBox6 h1 {
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+  }
+  .modalBox6 h2 {
+    font-size: 1.02rem;
+    margin: 10px 0 3px;
+  }
+  .modalBox6 p,
+  .modalBox6 ul {
+    font-size: 0.99rem;
+    line-height: 1.35;
+  }
+  .closeModalBtn6 {
+    right: 12px;
+    top: 9px;
+    font-size: 1.8rem;
+  }
+}

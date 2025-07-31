@@ -1,0 +1,111 @@
+.hero-section * {
+  color: #181818 !important;
+  text-shadow: none !important;
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  font-family: "Playfair Display", serif;
+  text-transform: uppercase;
+}
+
+.hero-section .subtitle {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-section .brand {
+  font-size: 1.1rem;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  margin-bottom: 1.25rem;
+}
+.hero-btn {
+  color: #181818 !important;
+  background: transparent;
+  transition: all 0.3s;
+}
+.hero-btn:hover,
+.hero-btn:focus {
+  color: #fff !important;
+  background: #181818 !important;
+}
+
+/* Titlu secțiuni și spacing general */
+.treatments-title-section {
+  padding: 5rem 2rem;
+  background: transparent;
+  margin-bottom: 4rem;
+}
+.treatments-title-container {
+  max-width: 90rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.treatments-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.1;
+  color: #29211f;
+  margin-bottom: 0.75rem;
+}
+.treatments-subtitle {
+  margin-top: 0;
+  font-size: 1.125rem;
+  color: #5e524d;
+  max-width: 45rem;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+.testimonials-header {
+  margin-bottom: 3.5rem;
+}
+
+/* Valurile */
+.wave-transition-up {
+  width: 100vw;
+  margin-bottom: -2px;
+  background: none;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+.wave-transition-down {
+  width: 100vw;
+  margin-top: -2px;
+  background: none;
+  line-height: 0;
+}
+/* Doar pe telefon (max 600px), restul rămâne cum e acum */
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2.17rem !important;
+    line-height: 1.12;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0;
+    padding: 0 2px;
+  }
+  .hero-brand {
+    font-size: 1rem !important;
+    margin-bottom: 4px;
+  }
+  .hero-desc {
+    font-size: 0.93rem !important;
+    padding: 0 2px;
+    margin-bottom: 1rem;
+  }
+  .hero-btn {
+    font-size: 0.95rem !important;
+    padding: 9px 12px;
+    min-width: 100px;
+  }
+}
