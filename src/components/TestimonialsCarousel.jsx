@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-// Primește arrayul testimonials, fiecare cu: imageSrc, overlayContent
 export default function TestimonialsCarousel({ testimonials }) {
   const [current, setCurrent] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
@@ -13,7 +12,6 @@ export default function TestimonialsCarousel({ testimonials }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // DESKTOP: grid normal
   if (!isMobile) {
     return (
       <div
@@ -28,7 +26,6 @@ export default function TestimonialsCarousel({ testimonials }) {
       >
         {testimonials.map((t, idx) => (
           <div key={idx} style={{ position: "relative", minWidth: 320 }}>
-            {/* Fundal poză */}
             <div
               style={{
                 backgroundImage: `url(${t.imageSrc})`,
@@ -44,7 +41,7 @@ export default function TestimonialsCarousel({ testimonials }) {
                 zIndex: 1,
               }}
             />
-            {/* Card testimonial */}
+
             <div
               style={{
                 position: "relative",
@@ -69,7 +66,6 @@ export default function TestimonialsCarousel({ testimonials }) {
     );
   }
 
-  // MOBILE: carusel
   const handlePrev = () =>
     setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   const handleNext = () =>
@@ -89,7 +85,6 @@ export default function TestimonialsCarousel({ testimonials }) {
         margin: "0 auto",
       }}
     >
-      {/* Săgeată stânga */}
       <button
         aria-label="Previous"
         onClick={handlePrev}
@@ -111,7 +106,6 @@ export default function TestimonialsCarousel({ testimonials }) {
         &#8592;
       </button>
 
-      {/* Card testimonial cu fundal poză + overlay */}
       <div
         style={{
           width: "92vw",
@@ -123,7 +117,6 @@ export default function TestimonialsCarousel({ testimonials }) {
           boxShadow: "0 8px 36px 0 rgba(120, 80, 20, 0.09)",
         }}
       >
-        {/* Fundal poză */}
         <div
           style={{
             backgroundImage: `url(${t.imageSrc})`,
@@ -138,7 +131,7 @@ export default function TestimonialsCarousel({ testimonials }) {
             filter: "brightness(0.89) blur(0.4px)",
           }}
         />
-        {/* Overlay testimonial */}
+
         <div
           style={{
             position: "relative",
@@ -157,7 +150,6 @@ export default function TestimonialsCarousel({ testimonials }) {
         </div>
       </div>
 
-      {/* Săgeată dreapta */}
       <button
         aria-label="Next"
         onClick={handleNext}

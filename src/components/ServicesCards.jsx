@@ -45,7 +45,6 @@ export default function ServicesCards() {
   }
 
   if (isMobile) {
-    // CAROUSEL VIEW ON MOBILE
     const card = cards[idx];
     return (
       <div className={styles.carouselWrapper}>
@@ -85,7 +84,6 @@ export default function ServicesCards() {
     );
   }
 
-  // DESKTOP VIEW (original cards)
   return (
     <div className={styles.cardsContainer}>
       {cards.map((card, i) => (

@@ -39,7 +39,6 @@
   background: #181818 !important;
 }
 
-/* Titlu secțiuni și spacing general */
 .treatments-title-section {
   padding: 5rem 2rem;
   background: transparent;
@@ -71,7 +70,6 @@
   margin-bottom: 3.5rem;
 }
 
-/* Valurile */
 .wave-transition-up {
   width: 100vw;
   margin-bottom: -2px;
@@ -85,7 +83,7 @@
   background: none;
   line-height: 0;
 }
-/* Doar pe telefon (max 600px), restul rămâne cum e acum */
+
 @media (max-width: 600px) {
   .hero-title {
     font-size: 2.17rem !important;
@@ -109,7 +107,7 @@
     min-width: 100px;
   }
   .butonprimapaginajos2 {
-    background-color: #b3864a; /* culoarea auriu-maro */
+    background-color: #b3864a;
     color: white;
     border: none;
     padding: 10px 28px;
@@ -122,6 +120,6 @@
   }
 
   .butonprimapaginajos2:hover {
-    background-color: #a77c3b; /* culoare hover mai închisă */
+    background-color: #a77c3b;
   }
 }

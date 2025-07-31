@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Dither from "../components/Dither";
-import "./Gallery.css"; // sau results.css dacă ai deja stiluri
+import "./Gallery.css";
 import FooterIvuriro from "../components/FooterIvuriro";
-// Toate pozele trebuie să fie puse în public/photos/... sau să ai path corect
 
 const resultsData = [
   {
@@ -95,7 +94,6 @@ const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [openFAQ, setOpenFAQ] = useState(null);
 
-  // Filtrare logică
   const filteredResults =
     activeFilter === "all"
       ? resultsData
@@ -103,7 +101,6 @@ const Gallery = () => {
 
   return (
     <main>
-      {/* Fundal Dither titlu */}
       <div
         style={{
           position: "relative",
@@ -171,7 +168,6 @@ const Gallery = () => {
         </div>
       </div>
 
-      {/* Filtru pe categorii */}
       <div
         className="filter-buttons-gallery3"
         style={{ textAlign: "center", margin: "40px 0 24px 0" }}
@@ -189,7 +185,6 @@ const Gallery = () => {
         ))}
       </div>
 
-      {/* Grid galerie */}
       <div className="results-grid-gallery3">
         {filteredResults.map((item, idx) => (
           <div className={`result-card-gallery3 ${item.category}`} key={idx}>
@@ -218,7 +213,6 @@ const Gallery = () => {
         )}
       </div>
 
-      {/* FAQ Section */}
       <section className="faq4">
         <h2>
           Frequently <span className="orange">Asked Questions</span>

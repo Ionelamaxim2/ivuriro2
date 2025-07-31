@@ -29,7 +29,7 @@
 .cardOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.4); /* Schimbă aici opacitatea */
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(2.5px);
   z-index: 1;
 }
@@ -70,9 +70,6 @@
   color: unset;
 }
 
-/* ---- Butonul "learn-more" (lasă exact cum e, dacă vrei animat, altfel fă-l simplu) ---- */
-
-/* ---- Responsive ---- */
 @media (max-width: 900px) {
   .cardsContainer {
     flex-direction: column;
@@ -191,7 +188,7 @@ button:hover .button-text {
     text-align: left;
     box-shadow: 0 4px 18px #b08a4b23;
     border-radius: 22px;
-    /* Mai mic pe vertical */
+
     min-height: 310px;
     max-height: 340px;
     height: auto;

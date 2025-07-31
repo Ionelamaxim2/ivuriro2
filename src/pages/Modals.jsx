@@ -11,7 +11,6 @@ export default function Modals({ show, onClose, type }) {
               ×
             </button>
 
-            {/* PRIVACY POLICY */}
             {type === "privacy" && (
               <>
                 <h1>Privacy Policy</h1>
@@ -110,7 +109,6 @@ export default function Modals({ show, onClose, type }) {
               </>
             )}
 
-            {/* TERMS & CONDITIONS */}
             {type === "terms" && (
               <>
                 <h1>Terms and Conditions</h1>

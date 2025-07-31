@@ -35,7 +35,6 @@ const teamMembers = [
 const Team = () => {
   return (
     <main>
-      {/* Fundal Dither titlu + subtitlu */}
       <div
         style={{
           position: "relative",
@@ -105,7 +104,6 @@ const Team = () => {
         </section>
       </div>
 
-      {/* Membrii echipei */}
       <section className="ourteam4-members">
         {teamMembers.map((member, idx) => (
           <div

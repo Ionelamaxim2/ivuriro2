@@ -5,7 +5,6 @@ import { cn } from "../lib/utils";
 import { motion, stagger, useAnimate, useInView } from "motion/react";
 import { useEffect } from "react";
 
-// TypewriterEffect component
 export const TypewriterEffect = ({ words, className, cursorClassName }) => {
   const wordsArray = words.map((word) => ({
     ...word,
@@ -75,7 +74,6 @@ export const TypewriterEffect = ({ words, className, cursorClassName }) => {
   );
 };
 
-// TypewriterEffectSmooth component
 export const TypewriterEffectSmooth = ({
   words,
   className,

@@ -102,7 +102,6 @@ const prices = [
 const Pricing = () => {
   return (
     <main>
-      {/* Fundal Dither sub header */}
       <div
         style={{
           position: "relative",
@@ -119,7 +118,7 @@ const Pricing = () => {
             width: "120%",
             height: "100%",
             zIndex: 1,
-            pointerEvents: "none", // nu blochează click
+            pointerEvents: "none",
           }}
         >
           <Dither
@@ -133,7 +132,7 @@ const Pricing = () => {
             waveSpeed={0.05}
           />
         </div>
-        {/* Titlul și subtitlul peste efect */}
+
         <div
           style={{
             position: "relative",
@@ -172,7 +171,6 @@ const Pricing = () => {
         </div>
       </div>
 
-      {/* Lista de prețuri */}
       <section className="pricing-clean2">
         {prices.map((category, i) => (
           <div className="pricing-list-block2" key={i}>
@@ -193,7 +191,6 @@ const Pricing = () => {
         ))}
       </section>
 
-      {/* Secțiunea consultanță gratuită */}
       <section className="free-consult4-section">
         <div className="free-consult4-box">
           <h2 className="free-consult4-title">Not sure what to choose?</h2>

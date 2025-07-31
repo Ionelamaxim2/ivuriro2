@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { Renderer, Program, Mesh, Triangle } from "ogl";
 
 const LiquidChrome = ({
-  baseColor = [1.0, 0.97, 0.9], // crem deschis
+  baseColor = [1.0, 0.97, 0.9],
   speed = 0.4,
   amplitude = 0.5,
   frequencyX = 3,

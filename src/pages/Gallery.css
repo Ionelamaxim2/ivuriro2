@@ -60,7 +60,7 @@
   flex-wrap: wrap;
   gap: 28px;
   justify-content: center;
-  max-width: 900px; /* setează o lățime fixă sau maximă */
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 2vw;
@@ -357,20 +357,19 @@
   width: 100%;
 }
 .faq4 {
-  margin-top: 54px; /* sau cât vrei tu */
+  margin-top: 54px;
 }
-/* Desktop: grid 3 sau 4, cum ai tu */
+
 .results-grid-gallery3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 26px 22px;
-  max-width: 1100px; /* limitează lățimea totală */
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 20px;
 }
 
-/* Pentru mobil: 2 pe rând */
 @media (max-width: 700px) {
   .results-grid-gallery3 {
     grid-template-columns: 1fr 1fr !important;
@@ -386,7 +385,7 @@
     margin: 0 !important;
     border-radius: 19px;
     box-shadow: 0 3px 13px 0 rgba(80, 71, 58, 0.08);
-    /* dacă ai spațiu jos prea mare, adaugă: */
+
     margin-bottom: 0 !important;
   }
 

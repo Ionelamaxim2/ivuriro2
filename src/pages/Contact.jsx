@@ -29,7 +29,6 @@ const Contact = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Validare
   const validateForm = () => {
     if (countWords(form.name) > 5) return "Name too long (max 5 words)";
     if (!allowedEmailDomains.some((domain) => form.email.endsWith(domain)))
@@ -40,12 +39,10 @@ const Contact = () => {
     return "";
   };
 
-  // Handlers
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -64,7 +61,6 @@ const Contact = () => {
       setSuccess(true);
       setForm(initialState);
 
-      // Cardul de succes dispare după 5 secunde
       setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
       setError("There was an error sending your message. Please try again!");
@@ -74,7 +70,6 @@ const Contact = () => {
 
   return (
     <main>
-      {/* Dither pe titlu/subtitlu */}
       <div
         style={{
           position: "relative",
@@ -184,7 +179,6 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* FORMULAR */}
           <form
             className="contact-form"
             id="contactForm"
@@ -322,7 +316,6 @@ const Contact = () => {
           </form>
         </div>
 
-        {/* restul secțiunilor: hartă, call-box etc. */}
         <div className="map-container">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2849.3258!2d26.0963!3d44.4268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff5fcbf398e3%3A0x8c607ae531a364a7!2sBulevardul%20Unirii%2C%20Bucure%C8%99ti!5e0!3m2!1sen!2sro!4v1625316510000!5m2!1sen!2sro"

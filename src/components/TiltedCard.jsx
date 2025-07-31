@@ -97,7 +97,6 @@ export default function TiltedCard({
           scale,
         }}
       >
-        {/* Imaginea pe fundal cu background */}
         <div
           aria-label={altText}
           role="img"

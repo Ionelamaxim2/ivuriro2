@@ -36,7 +36,7 @@
     transform: rotate(360deg);
   }
 }
-/* Adaugă asta la finalul index.css sau App.css - nu în module.css! */
+
 button {
   position: relative;
   display: inline-block;
@@ -63,7 +63,7 @@ button.learn-more .circle {
   margin: 0;
   width: 3rem;
   height: 3rem;
-  background: #a77c3b; /* culoarea ta gold */
+  background: #a77c3b;
   border-radius: 1.625rem;
 }
 

@@ -83,7 +83,6 @@ const testimonials = [
   },
 ];
 
-// Hook pentru detectare mobil / desktop
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
   useEffect(() => {
@@ -94,7 +93,6 @@ function useIsMobile(breakpoint = 768) {
   return isMobile;
 }
 
-// Carusel simplu cu săgeți pentru mobil (galerie statică)
 function StaticMobileGallery() {
   const slides = [
     {
@@ -135,19 +133,16 @@ function StaticMobileGallery() {
 
   return (
     <div className="relative w-full max-w-sm mx-auto bg-white rounded-xl shadow-lg p-4 flex flex-col items-center">
-      {/* Titlu cu margin bottom pentru spațiu */}
       <p className="text-center font-semibold text-lg mb-4">
         {slides[currentIndex].text}
       </p>
 
-      {/* Imaginea */}
       <img
         src={slides[currentIndex].image}
         alt={slides[currentIndex].text}
         className="rounded-lg object-cover max-h-64"
       />
 
-      {/* Butoanele săgeți */}
       <div className="flex justify-between w-full max-w-xs mt-4">
         <button
           onClick={prevSlide}
@@ -173,7 +168,6 @@ export default function Home() {
 
   return (
     <div className="w-screen min-h-screen bg-[#faeedc] overflow-x-hidden">
-      {/* 1. HERO section */}
       <section
         className="relative flex flex-col items-center justify-center px-6 text-center select-none hero-section"
         style={{
@@ -212,7 +206,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. SERVICES CARDS */}
       <section className="bg-[#faeedc] py-16">
         <div
           className="treatments-title-section px-6"
@@ -231,7 +224,6 @@ export default function Home() {
         <ServicesCards />
       </section>
 
-      {/* 3. TESTIMONIALS */}
       <section
         style={{
           width: "100%",
@@ -242,7 +234,6 @@ export default function Home() {
         }}
         className="flex flex-col justify-center"
       >
-        {/* Fundalul cu efectul dithered */}
         <div
           style={{
             position: "absolute",
@@ -264,7 +255,7 @@ export default function Home() {
             waveSpeed={0.05}
           />
         </div>
-        {/* Titlu & testimoniale */}
+
         <div
           style={{
             position: "relative",
@@ -297,7 +288,7 @@ export default function Home() {
             Real stories from real people who have experienced the IVURIRO
             difference
           </p>
-          {/* MOBIL: carusel | DESKTOP: TiltedCard grid */}
+
           {isMobile ? (
             <TestimonialsCarousel testimonials={testimonials} />
           ) : (
@@ -331,7 +322,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. GALLERY */}
       <section className="bg-[#faeedc] ">
         <div
           className="treatments-title-section  mb-0"
@@ -375,7 +365,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <div className="bg-[#faeedc]">
         <FooterIvuriro />
       </div>

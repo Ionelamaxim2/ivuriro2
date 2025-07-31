@@ -11,13 +11,12 @@ import { Link } from "react-router-dom";
 import Modals from "../pages/Modals";
 
 export default function FooterIvuriro() {
-  const [modalOpen, setModalOpen] = useState(null); // null, "privacy", "terms"
+  const [modalOpen, setModalOpen] = useState(null);
 
   return (
     <>
       <footer className="w-full bg-[#fcf8ef] pt-10 pb-4 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 pb-6 border-b border-gray-200">
-          {/* Col 1: Brand + social */}
           <div>
             <h2 className="text-3xl font-serif font-bold text-[#b3864a] mb-1">
               IVURIR<span className="text-[#8a6b3a]">O</span>
@@ -52,7 +51,7 @@ export default function FooterIvuriro() {
               </a>
             </div>
           </div>
-          {/* Col 2: Services */}
+
           <div>
             <h3 className="text-xl font-bold text-[#766353] mb-2">SERVICES</h3>
             <ul className="text-gray-700 space-y-1">
@@ -78,7 +77,7 @@ export default function FooterIvuriro() {
               </li>
             </ul>
           </div>
-          {/* Col 3: Contact */}
+
           <div>
             <h3 className="text-xl font-bold text-[#766353] mb-2">CONTACT</h3>
             <ul className="text-gray-700 space-y-2">
@@ -95,7 +94,7 @@ export default function FooterIvuriro() {
             </ul>
           </div>
         </div>
-        {/* Subsol copyright + linkuri */}
+
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between pt-4 text-sm text-gray-500">
           <div className="mb-2 md:mb-0">
             © 2025 IVURIRO. All rights reserved.
@@ -119,7 +118,7 @@ export default function FooterIvuriro() {
           </div>
         </div>
       </footer>
-      {/* MODALELE */}
+
       <Modals
         show={!!modalOpen}
         type={modalOpen}
