@@ -1,13 +1,7 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-const springValues = {
-  damping: 30,
-  stiffness: 100,
-  mass: 2,
-};
-
-export default function TiltedCard({
+function TiltedCard({
   imageSrc,
   altText = "Tilted card image",
   captionText = "",
@@ -22,6 +16,12 @@ export default function TiltedCard({
   overlayContent = null,
   displayOverlayContent = false,
 }) {
+  const springValues = {
+    damping: 30,
+    stiffness: 100,
+    mass: 2,
+  };
+
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -136,3 +136,5 @@ export default function TiltedCard({
     </figure>
   );
 }
+
+export default React.memo(TiltedCard);

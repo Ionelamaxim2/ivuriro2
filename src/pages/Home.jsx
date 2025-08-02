@@ -1,25 +1,32 @@
-import React, { useState, useEffect } from "react";
-import LiquidChrome from "../components/LiquidChrome";
+import React, { Suspense, lazy, useState, useEffect } from "react";
+import "./Home.css";
+
+import HeroTitleAnimated from "../components/HeroTitleAnimated";
+import FooterIvuriro from "../components/FooterIvuriro";
 import ServicesCards from "../components/ServicesCards";
 import TiltedCard from "../components/TiltedCard";
-import CircularGallery from "../components/CircularGallery";
-import FooterIvuriro from "../components/FooterIvuriro";
-import Dither from "../components/Dither";
-import TestimonialsCarousel from "../components/TestimonialsCarousel";
-import "./Home.css";
-import { motion } from "framer-motion";
-import HeroTitleAnimated from "../components/HeroTitleAnimated";
+
+const StaticMobileGallery = lazy(() =>
+  import("../components/StaticMobileGallery")
+);
+const LiquidChrome = lazy(() => import("../components/LiquidChrome"));
+const CircularGallery = lazy(() => import("../components/CircularGallery"));
+const Dither = lazy(() => import("../components/Dither"));
+const TestimonialsCarousel = lazy(() =>
+  import("../components/TestimonialsCarousel")
+);
 
 const testimonials = [
   {
-    imageSrc: "/images/client1.avif",
+    imageSrc: "/images/client1.webp",
     altText: "Sarah Johnson",
     overlayContent: (
       <div className="flex flex-col items-center bg-white/90 rounded-xl shadow-xl p-6 w-[260px] h-[300px]">
         <img
-          src="/images/client1.avif"
+          src="/images/client1.webp"
           alt="Sarah Johnson"
           className="w-16 h-16 rounded-full mb-2 object-cover shadow"
+          loading="lazy"
         />
         <h3 className="font-bold text-lg mb-1">Sarah Johnson</h3>
         <div className="text-xs text-gray-500 mb-1">Age 34</div>
@@ -36,14 +43,15 @@ const testimonials = [
     ),
   },
   {
-    imageSrc: "/images/client2.avif",
+    imageSrc: "/images/client2.webp",
     altText: "Emma Rodriguez",
     overlayContent: (
       <div className="flex flex-col items-center bg-white/90 rounded-xl shadow-xl p-6 w-[260px] h-[300px]">
         <img
-          src="/images/client2.avif"
+          src="/images/client2.webp"
           alt="Emma Rodriguez"
           className="w-16 h-16 rounded-full mb-2 object-cover shadow"
+          loading="lazy"
         />
         <h3 className="font-bold text-lg mb-1">Emma Rodriguez</h3>
         <div className="text-xs text-gray-500 mb-1">Age 28</div>
@@ -60,14 +68,15 @@ const testimonials = [
     ),
   },
   {
-    imageSrc: "/images/client3.avif",
+    imageSrc: "/images/client3.webp",
     altText: "Lisa Chen",
     overlayContent: (
       <div className="flex flex-col items-center bg-white/90 rounded-xl shadow-xl p-6 w-[260px] h-[300px]">
         <img
-          src="/images/client3.avif"
+          src="/images/client3.webp"
           alt="Lisa Chen"
           className="w-16 h-16 rounded-full mb-2 object-cover shadow"
+          loading="lazy"
         />
         <h3 className="font-bold text-lg mb-1">Lisa Chen</h3>
         <div className="text-xs text-gray-500 mb-1">Age 42</div>
@@ -86,83 +95,15 @@ const testimonials = [
 ];
 
 function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < breakpoint : false
+  );
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < breakpoint);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);
   return isMobile;
-}
-
-function StaticMobileGallery() {
-  const slides = [
-    {
-      image: "/images/abdomen1.avif",
-      text: "Abdomen shape restoration",
-    },
-    {
-      image: "/images/buze1.avif",
-      text: "Visible volume and hydration after injection",
-    },
-    {
-      image: "/images/bbl1.avif",
-      text: "Brazilian Butt Lift",
-    },
-    {
-      image: "/images/fund1.avif",
-      text: "Non-surgical lifting and volumization",
-    },
-    {
-      image: "/images/sani1.avif",
-      text: "Improved shape, volume, and symmetry",
-    },
-    {
-      image: "/images/jawline1.avif",
-      text: "Defined jawline contour",
-    },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  function prevSlide() {
-    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  }
-
-  function nextSlide() {
-    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  }
-
-  return (
-    <div className="relative w-full max-w-sm mx-auto bg-white rounded-xl shadow-lg p-4 flex flex-col items-center">
-      <p className="text-center font-semibold text-lg mb-4">
-        {slides[currentIndex].text}
-      </p>
-
-      <img
-        src={slides[currentIndex].image}
-        alt={slides[currentIndex].text}
-        className="rounded-lg object-cover max-h-64"
-      />
-
-      <div className="flex justify-between w-full max-w-xs mt-4">
-        <button
-          onClick={prevSlide}
-          aria-label="Previous slide"
-          className="p-2 rounded-full bg-[#b3864a] text-white hover:bg-[#a77c3b] transition"
-        >
-          &#8592;
-        </button>
-        <button
-          onClick={nextSlide}
-          aria-label="Next slide"
-          className="p-2 rounded-full bg-[#b3864a] text-white hover:bg-[#a77c3b] transition"
-        >
-          &#8594;
-        </button>
-      </div>
-    </div>
-  );
 }
 
 export default function Home() {
@@ -178,16 +119,18 @@ export default function Home() {
           overflow: "hidden",
         }}
       >
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-auto">
-          <LiquidChrome
-            baseColor={[0.95, 0.9, 0.8]}
-            speed={0.2}
-            amplitude={0.5}
-            frequencyX={3}
-            frequencyY={2}
-            interactive={true}
-          />
-        </div>
+        <Suspense fallback={<div className="w-full h-full bg-[#f5ecd9]" />}>
+          <div className="absolute inset-0 w-full h-full z-0 pointer-events-auto">
+            <LiquidChrome
+              baseColor={[0.95, 0.9, 0.8]}
+              speed={0.2}
+              amplitude={0.5}
+              frequencyX={3}
+              frequencyY={2}
+              interactive={true}
+            />
+          </div>
+        </Suspense>
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full pointer-events-auto">
           <div className="brand hero-brand">IVURIRO</div>
           <HeroTitleAnimated />
@@ -203,17 +146,26 @@ export default function Home() {
           </button>
         </div>
       </section>
-
-      <section className="bg-[#faeedc] py-16">
+      <section className="bg-[#faeedc] py-10">
         <div
           className="treatments-title-section px-6"
-          style={{ background: "transparent" }}
+          style={{
+            background: "transparent",
+            paddingBottom: "0.2rem",
+            marginBottom: 0,
+          }}
         >
-          <div className="treatments-title-container max-w-5xl mx-auto text-left">
-            <h2 className="treatments-title text-4xl font-serif font-bold mb-2">
+          <div
+            className="treatments-title-container max-w-5xl mx-auto text-left"
+            style={{ marginBottom: "0.1rem" }}
+          >
+            <h2 className="treatments-title text-4xl font-serif font-bold mb-1">
               Discover the Treatments from IVURIRO Clinic
             </h2>
-            <p className="treatments-subtitle text-gray-700 text-lg max-w-xl">
+            <p
+              className="treatments-subtitle text-gray-700 text-lg max-w-xl"
+              style={{ marginBottom: 0 }}
+            >
               You're in the right place – explore the complete details about the
               procedures that interest you most.
             </p>
@@ -232,28 +184,29 @@ export default function Home() {
         }}
         className="flex flex-col justify-center"
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "120%",
-            height: isMobile ? "140%" : "100%",
-            zIndex: 1,
-            pointerEvents: "auto",
-          }}
-        >
-          <Dither
-            waveColor={[1, 0.9, 0.8]}
-            disableAnimation={false}
-            enableMouseInteraction={false}
-            mouseRadius={0.3}
-            colorNum={4}
-            waveAmplitude={0.3}
-            waveFrequency={3}
-            waveSpeed={0.05}
-          />
-        </div>
-
+        <Suspense fallback={<div className="w-full h-[600px] bg-[#f5ecd9]" />}>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "120%",
+              height: isMobile ? "140%" : "100%",
+              zIndex: 1,
+              pointerEvents: "auto",
+            }}
+          >
+            <Dither
+              waveColor={[1, 0.9, 0.8]}
+              disableAnimation={false}
+              enableMouseInteraction={false}
+              mouseRadius={0.3}
+              colorNum={4}
+              waveAmplitude={0.3}
+              waveFrequency={3}
+              waveSpeed={0.05}
+            />
+          </div>
+        </Suspense>
         <div
           style={{
             position: "relative",
@@ -287,43 +240,44 @@ export default function Home() {
             Real stories from real people who have experienced the IVURIRO
             difference
           </p>
-
-          {isMobile ? (
-            <TestimonialsCarousel testimonials={testimonials} />
-          ) : (
-            <div
-              style={{
-                display: "flex",
-                gap: 32,
-                justifyContent: "center",
-                flexWrap: "wrap",
-                margin: "0 auto",
-                maxWidth: 1200,
-              }}
-            >
-              {testimonials.map((t, idx) => (
-                <TiltedCard
-                  key={idx}
-                  imageSrc={t.imageSrc}
-                  altText={t.altText}
-                  containerHeight="390px"
-                  containerWidth="340px"
-                  rotateAmplitude={14}
-                  scaleOnHover={1.08}
-                  showMobileWarning={false}
-                  showTooltip={false}
-                  displayOverlayContent={true}
-                  overlayContent={t.overlayContent}
-                />
-              ))}
-            </div>
-          )}
+          <Suspense fallback={<div>Loading testimonials...</div>}>
+            {isMobile ? (
+              <TestimonialsCarousel testimonials={testimonials} />
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  gap: 32,
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                  margin: "0 auto",
+                  maxWidth: 1200,
+                }}
+              >
+                {testimonials.map((t, idx) => (
+                  <TiltedCard
+                    key={idx}
+                    imageSrc={t.imageSrc}
+                    altText={t.altText}
+                    containerHeight="390px"
+                    containerWidth="340px"
+                    rotateAmplitude={14}
+                    scaleOnHover={1.08}
+                    showMobileWarning={false}
+                    showTooltip={false}
+                    displayOverlayContent={true}
+                    overlayContent={t.overlayContent}
+                  />
+                ))}
+              </div>
+            )}
+          </Suspense>
         </div>
       </section>
 
       <section className="bg-[#faeedc] ">
         <div
-          className="treatments-title-section  mb-0"
+          className="treatments-title-section mb-0"
           style={{
             marginBottom: 0,
             paddingBottom: 0,
@@ -343,21 +297,23 @@ export default function Home() {
           </div>
         </div>
         <div style={{ height: "450px", position: "relative" }}>
-          {isMobile ? (
-            <StaticMobileGallery />
-          ) : (
-            <CircularGallery
-              bend={1}
-              textColor="black"
-              borderRadius={0.15}
-              scrollEase={0.02}
-            />
-          )}
+          <Suspense fallback={<div>Loading gallery...</div>}>
+            {isMobile ? (
+              <StaticMobileGallery />
+            ) : (
+              <CircularGallery
+                bend={1}
+                textColor="black"
+                borderRadius={0.15}
+                scrollEase={0.02}
+              />
+            )}
+          </Suspense>
         </div>
         <div className="flex justify-center -mt-13 mb-14">
           <button
+            className="butonjos2"
             onClick={() => (window.location.href = "/contact")}
-            className="butonprimapaginajos2"
           >
             <span>Book now</span>
           </button>

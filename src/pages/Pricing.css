@@ -1,5 +1,5 @@
 .pricing-clean2 {
-  background: #fffdfb;
+  background: white;
   max-width: 1000px;
   margin: auto;
   padding: 40px 30px;
@@ -188,11 +188,4 @@
 
 .butonprimapaginajos2:hover::before {
   transform: translate3d(100%, 0, 0);
-}
-body,
-.pricing-page-bg {
-  background: #faeedc;
-}
-.pricing-clean2 {
-  background: #faeedc;
 }

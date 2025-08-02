@@ -110,7 +110,7 @@ const Contact = () => {
   };
 
   return (
-    <main>
+    <main style={{ background: "white", minHeight: "100vh", width: "100%" }}>
       <div
         style={{
           position: "relative",

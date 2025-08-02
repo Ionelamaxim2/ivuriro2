@@ -2,7 +2,22 @@
   color: #181818 !important;
   text-shadow: none !important;
 }
+.butonjos2 {
+  background-color: #b3864a;
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(179, 134, 74, 0.4);
+}
 
+.butonjos2:hover {
+  background-color: #a77c3b;
+}
 .hero-section h1 {
   font-size: 4rem;
   font-weight: 700;
@@ -42,7 +57,7 @@
 .treatments-title-section {
   padding: 5rem 2rem;
   background: transparent;
-  margin-bottom: 4rem;
+  margin-bottom: 0.5rem;
 }
 .treatments-title-container {
   max-width: 90rem;
@@ -105,21 +120,5 @@
     font-size: 0.95rem !important;
     padding: 9px 12px;
     min-width: 100px;
-  }
-  .butonprimapaginajos2 {
-    background-color: #b3864a;
-    color: white;
-    border: none;
-    padding: 10px 28px;
-    border-radius: 24px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 6px rgba(179, 134, 74, 0.4);
-  }
-
-  .butonprimapaginajos2:hover {
-    background-color: #a77c3b;
   }
 }

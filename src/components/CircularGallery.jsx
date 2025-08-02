@@ -362,27 +362,27 @@ class App {
   createMedias(items, bend = 0, textColor, borderRadius, font) {
     const defaultItems = [
       {
-        image: "/images/abdomen1.avif",
+        image: "/images/abdomen1.webp",
         text: "Abdomen shape restoration",
       },
       {
-        image: "/images/buze1.avif",
+        image: "/images/buze1.webp",
         text: "Visible volume and hydration after injection",
       },
       {
-        image: "/images/bbl1.avif",
+        image: "/images/bbl1.webp",
         text: "Brazilian Butt Lift",
       },
       {
-        image: "/images/fund1.avif",
+        image: "/images/fund1.webp",
         text: "Non-surgical lifting and volumization",
       },
       {
-        image: "/images/sani1.avif",
+        image: "/images/sani1.webp",
         text: "Improved shape, volume, and symmetry",
       },
       {
-        image: "/images/jawline1.avif",
+        image: "/images/jawline1.webp",
         text: "Defined jawline contour",
       },
     ];

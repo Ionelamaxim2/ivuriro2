@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { lazy, useEffect, Suspense } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import FooterIvuriro from "../components/FooterIvuriro";
 import "./Pricing.css";
@@ -131,7 +131,7 @@ const Pricing = () => {
   const [consultRef, consultAnim] = useScrollAnimation();
 
   return (
-    <main>
+    <main style={{ background: "white", minHeight: "100vh", width: "100%" }}>
       <div
         style={{
           position: "relative",

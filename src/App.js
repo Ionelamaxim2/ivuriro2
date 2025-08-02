@@ -1,16 +1,17 @@
-import React from "react";
+import React, { lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarAceternity from "./components/NavbarAceternity";
 import ScrollToTop from "./components/ScrollToTop";
-import Home from "./pages/Home";
-import Pricing from "./pages/Pricing";
-import Gallery from "./pages/Gallery";
-import Contact from "./pages/Contact";
-import Team from "./pages/Team";
+const Home = lazy(() => import("./pages/Home"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Team = lazy(() => import("./pages/Team"));
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <NavbarAceternity />
       <Routes>
         <Route path="/" element={<Home />} />

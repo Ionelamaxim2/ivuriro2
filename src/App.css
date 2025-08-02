@@ -257,3 +257,58 @@ button.learn-more:hover .circle .icon.arrow {
 button.learn-more:hover .button-text {
   color: #fff;
 }
+
+.butonprimapaginajos2 {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 0.9rem 2rem;
+  margin: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 500px;
+  overflow: hidden;
+  background: white;
+  color: ghostwhite;
+}
+
+.butonprimapaginajos2 span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+}
+
+.butonprimapaginajos2:hover span {
+  color: black;
+}
+
+.butonprimapaginajos2::before,
+.butonprimapaginajos2::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.butonprimapaginajos2::before {
+  content: "";
+  background: #a78546;
+  width: 120%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.butonprimapaginajos2:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
