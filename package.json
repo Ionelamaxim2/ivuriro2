@@ -10,6 +10,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "clsx": "^2.1.1",
+    "express": "^4.21.2",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.12.5",
     "framer-motion": "^12.23.12",
@@ -31,6 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "serve": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
