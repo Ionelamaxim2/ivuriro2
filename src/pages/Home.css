@@ -19,16 +19,16 @@
   background-color: #a77c3b;
 }
 .hero-section h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
+  font-size: clamp(3.2rem, 9.2vw, 6.4rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
   font-family: "Playfair Display", serif;
   text-transform: uppercase;
 }
 
 .hero-section .subtitle {
-  font-size: 1.25rem;
+  font-size: clamp(0.95rem, 1.1vw, 1.2rem);
   font-weight: 300;
   margin-bottom: 2rem;
   max-width: 1000px;
@@ -37,7 +37,7 @@
 }
 
 .hero-section .brand {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.1vw, 1.2rem);
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 0.25em;
@@ -47,11 +47,28 @@
   color: #181818 !important;
   background: transparent;
   transition: all 0.3s;
+  font-size: clamp(1rem, 1.05vw, 1.15rem);
+  padding: clamp(10px, 1.1vw, 14px) clamp(16px, 1.8vw, 24px);
+  border-radius: 10px;
 }
 .hero-btn:hover,
 .hero-btn:focus {
   color: #fff !important;
   background: #181818 !important;
+}
+
+/* Desktop-only: force black hero button and disable hover change */
+@media (min-width: 768px) {
+  .hero-section .hero-btn {
+    background: #000 !important;
+    color: #fff !important;
+    border-color: #000 !important;
+  }
+  .hero-section .hero-btn:hover,
+  .hero-section .hero-btn:focus {
+    background: #000 !important;
+    color: #fff !important;
+  }
 }
 
 .treatments-title-section {
@@ -101,24 +118,24 @@
 
 @media (max-width: 600px) {
   .hero-title {
-    font-size: 2.17rem !important;
+    font-size: clamp(2rem, 7.8vw, 2.4rem) !important;
     line-height: 1.12;
     margin-bottom: 0.7rem;
     letter-spacing: 0;
     padding: 0 2px;
   }
   .hero-brand {
-    font-size: 1rem !important;
+    font-size: clamp(0.9rem, 3.2vw, 1rem) !important;
     margin-bottom: 4px;
   }
   .hero-desc {
-    font-size: 0.93rem !important;
+    font-size: clamp(0.9rem, 3.4vw, 1rem) !important;
     padding: 0 2px;
     margin-bottom: 1rem;
   }
   .hero-btn {
-    font-size: 0.95rem !important;
-    padding: 9px 12px;
-    min-width: 100px;
+    font-size: clamp(0.92rem, 3.2vw, 1rem) !important;
+    padding: clamp(8px, 2.8vw, 10px) clamp(12px, 4.4vw, 14px);
+    min-width: 104px;
   }
 }

@@ -112,10 +112,10 @@ export default function Home() {
   return (
     <div className="w-screen min-h-screen bg-[#faeedc] overflow-x-hidden">
       <section
-        className="relative flex flex-col items-center justify-center px-6 text-center select-none hero-section"
+        className="relative flex items-center md:items-start justify-center px-6 select-none hero-section"
         style={{
           minHeight: "90vh",
-          height: "90vh",
+          height: isMobile ? "60vh" : "100vh",
           overflow: "hidden",
         }}
       >
@@ -131,19 +131,47 @@ export default function Home() {
             />
           </div>
         </Suspense>
-        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full pointer-events-auto">
-          <div className="brand hero-brand">IVURIRO</div>
-          <HeroTitleAnimated />
-          <p className="subtitle hero-desc">
-            Redefining facial and body contouring with a seamless blend of
-            advanced technology and aesthetic artistry.
-          </p>
-          <button
-            onClick={() => (window.location.href = "/contact")}
-            className="hero-btn px-8 py-3 border border-black rounded-md font-semibold uppercase tracking-wider bg-transparent cursor-pointer pointer-events-auto transition-colors hover:bg-black hover:text-white"
-          >
-            BOOK NOW
-          </button>
+        {/* Absolute hero image anchored to bottom-right, full height on desktop */}
+        <div
+          className="hidden md:block absolute pointer-events-none"
+          style={{ zIndex: 5, bottom: 0, right: "6vw", height: "88%" }}
+        >
+          <img
+            src="/images/pozahero.webp"
+            alt="IVURIRO Hero"
+            style={{
+              height: "100%",
+              width: "auto",
+              objectFit: "contain",
+              objectPosition: "right bottom",
+            }}
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 items-center md:items-stretch w-full h-full pointer-events-auto md:pt-12 lg:pt-16 pb-8 md:pb-12">
+          <div className="flex flex-col items-center md:items-start justify-center md:justify-start text-center md:text-left px-2 md:px-6 md:mt-8 lg:mt-10">
+            <div className="brand hero-brand">IVURIRO</div>
+            <HeroTitleAnimated textAlign={isMobile ? "center" : "left"} />
+            <p
+              className="subtitle hero-desc"
+              style={
+                isMobile
+                  ? undefined
+                  : { marginLeft: 0, marginRight: 0, textAlign: "left" }
+              }
+            >
+              Redefining facial and body contouring with a seamless blend of
+              advanced technology and aesthetic artistry.
+            </p>
+            <button
+              onClick={() => (window.location.href = "/contact")}
+              className="hero-btn px-8 py-3 border border-black rounded-md font-semibold uppercase tracking-wider bg-transparent cursor-pointer pointer-events-auto transition-colors hover:bg-black hover:text-white"
+            >
+              BOOK NOW
+            </button>
+          </div>
+          <div className="hidden md:block" />
         </div>
       </section>
       <section className="bg-[#faeedc] py-10">
